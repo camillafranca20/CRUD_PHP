@@ -11,15 +11,16 @@
 	<div class="container">
 		<!-- PHP que procura o registro e exibe campos para alterações-->
 		<?php
+		include 'conecta_mysql.inc';
+		$conexao= mysqli_connect("localhost","root","","tcadastrocrud");
         error_reporting(0);
         ini_set('display_errors', 0);
-        include 'conecta_mysql.inc';
 
         $ID = $_POST['ID'];
         //comando sql
-        $reso = mysql_query("select * from cadastroCRUD WHERE id_cadastro = '$ID' ");
+        $reso = mysqli_query($conexao,"select * from cadastroCRUD WHERE id_cadastro = '$ID' ");
         //retorno do comando sql no registro procurado
-        $row = mysql_fetch_array($reso);
+        $row = mysqli_fetch_array($reso);
 
         //form criadoo em php que envia os dados para o atualizacao.php processar a atualização
         echo'REGISTRO ID: '.$ID."<br/>	
