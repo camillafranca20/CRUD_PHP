@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Crud PHP</title>
+<title>Crud PHP</title>
 </head>
 <body>
 	<!--form que envia os dados para novo cadastro no cadastrar.php-->
@@ -11,7 +11,7 @@
 	</form>
 	<div class="container">
 		<!-- Include exibe a tabela-->
-		<?php include "tabela.php";?>
+		<?php include 'tabela.php';?>
 	</div>
 </body>
 </html>

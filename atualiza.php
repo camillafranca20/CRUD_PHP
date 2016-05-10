@@ -13,25 +13,26 @@
 		<?php
 		error_reporting(0);
 		ini_set('display_errors', 0);
-		include "conecta_mysql.inc";
+		include 'conecta_mysql.inc';
 
-		$ID = $_POST["ID"]; 
-		//comando sql
-		$reso = mysql_query("select * from cadastroCRUD WHERE id_cadastro = '$ID' ");
-		//retorno do comando sql no registro procurado
-		$row = mysql_fetch_array($reso);
+		$ID = $_POST['ID'];
+        //comando sql
+		$reso = mysqli_query($conexao, "select * from cadastroCRUD WHERE id_cadastro = '$ID' ");
+        //retorno do comando sql no registro procurado
+		//$row = mysqli_fetch_array($reso);
+		while ($row = mysqli_fetch_array($reso)) {
+        //form criadoo em php que envia os dados para o atualizacao.php processar a atualização
+			echo'REGISTRO ID: '.$ID."<br/>	
+			<form method='POST' action='atualizacao.php'>
 
-		//form criadoo em php que envia os dados para o atualizacao.php processar a atualização
-		echo"REGISTRO ID: ".$ID."<br/>	
-		<form method='POST' action='atualizacao.php'>
+			<input type='text'name='ID' value='".$row['id_cadastro']."' readonly><br/>
+			<input type='text' name='nome' placeholder='Nome'value='".$row['nm_cadastro']."'><br/>
+			<input type='text' name='telefone' placeholder='Telefone'value='".$row['tel_cadastro']."'><br/>
+			<input type='submit' value='Atualizar' name='submit'>
 
-		<input type='text'name='ID' value='". $row['id_cadastro']."' readonly><br/>
-		<input type='text' name='nome' placeholder='Nome'value='". $row['nm_cadastro']."'><br/>
-		<input type='text' name='telefone' placeholder='Telefone'value='". $row['tel_cadastro']."'><br/>
-		<input type='submit' value='Atualizar' name='submit'>
-
-		</form>
-		";
+			</form>
+			";
+		}
 		?>
 	</div>
 </body>
